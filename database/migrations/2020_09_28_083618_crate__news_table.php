@@ -16,6 +16,7 @@ class CrateNewsTable extends Migration
         Schema::create('News', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('Title');
+            $table->char('SubTitle');
             $table->text('InnerText');
             $table->String('ImageURL');
         });
