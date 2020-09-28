@@ -18,7 +18,6 @@ class CrateNewsTable extends Migration
             $table->char('Title');
             $table->text('InnerText');
             $table->String('ImageURL');
-            $table->timestamp('PostUpDateTime')->useCurrent();
         });
     }
 
