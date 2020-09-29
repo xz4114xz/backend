@@ -19,6 +19,7 @@
                 </div>
             @endforeach
         </div>
+        {{-- 用於製造分頁 --}}
         {{ $news_list->links() }}
     @endsection
 
