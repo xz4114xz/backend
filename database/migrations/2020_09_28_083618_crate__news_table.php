@@ -19,6 +19,7 @@ class CrateNewsTable extends Migration
             $table->char('SubTitle');
             $table->text('InnerText');
             $table->String('ImageURL');
+            $table->timestamp('UpdateTime');
         });
     }
 
