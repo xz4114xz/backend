@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
+use App\attraction;
 
 class FrontController extends Controller
 {
@@ -37,6 +37,35 @@ class FrontController extends Controller
 
     public function template(){
         return view('front/template');
+    }
+    public function store_contact_us(Request $request){
+        // dd($request->all());
+
+        //透過db輸入
+        // DB::table("attractions")->insert(
+        //     ['email'=>$request->email,
+        //     'location'=>$request->location,
+        //     'file'=>$request->file,
+        //     'Attractions_name'=>$request->Attractions_name,
+        //     'info'=>$request->info
+        //     ]);
+
+
+        //透過orm
+            $new_attraction = new attraction;
+            $new_attraction->email = $request->email;
+            $new_attraction->location = $request->location;
+            $new_attraction->file = $request->file;
+            $new_attraction->Attractions_name = $request->Attractions_name;
+            $new_attraction->info = $request->info;
+
+
+            $new_attraction->save();
+        //透過 orm mass assigment
+            // attraction::create($request->all());
+
+        return "success";
+
     }
 
 }
