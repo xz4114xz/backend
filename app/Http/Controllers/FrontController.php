@@ -38,6 +38,13 @@ class FrontController extends Controller
     public function template(){
         return view('front/template');
     }
+        return view('auth/login');
+    }
+    public function register(){
+        return view('auth/register');
+    }
+
+
     public function store_contact_us(Request $request){
         // dd($request->all());
 
@@ -55,7 +62,8 @@ class FrontController extends Controller
             $new_attraction = new attraction;
             $new_attraction->email = $request->email;
             $new_attraction->location = $request->location;
-            $new_attraction->file = $request->file;
+            // $new_attraction->file = $request->file;
+            $new_attraction->file = '';
             $new_attraction->Attractions_name = $request->Attractions_name;
             $new_attraction->info = $request->info;
 
