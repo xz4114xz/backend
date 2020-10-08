@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('CSS')
 </head>
 <body>
     <div id="app">
@@ -26,6 +26,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <a href="/admin/news" class ="btn btn-sm btn-secondary mr-3">消息管理</a>
+                {{-- <a href="admin/news/edit{newsid}" class ="btn btn-sm btn-secondary">編輯消息</a> --}}
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -72,9 +75,22 @@
             </div>
         </nav>
 
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">後台</a></li>
+              <li class="breadcrumb-item active"><a href="#">消息管理</a></li>
+
+          </nav>
+
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" ></script>
+
+        @yield('js')
+
 </body>
 </html>

@@ -38,8 +38,10 @@ class FrontController extends Controller
     public function template(){
         return view('front/template');
     }
-        return view('auth/login');
+        public function login(){
+            return view('auth/login');
     }
+    
     public function register(){
         return view('auth/register');
     }

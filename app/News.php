@@ -8,7 +8,7 @@ class News extends Model
 {
     //
     protected $fillable = [
-        'Title', 'InnerText', 'ImageURL','SubTitle'
+        'Title', 'InnerText','SubTitle','ImageURL'
     ];
 
     protected $hidden = [

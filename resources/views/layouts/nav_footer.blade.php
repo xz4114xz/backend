@@ -103,6 +103,7 @@
 
     <!-- page js -->
     <script src="./js/index.js"></script>
+    @yield('js')
 </body>
 
 </html>
