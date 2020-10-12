@@ -6,12 +6,13 @@
 
 @section('content')
 <div class="container">
+    <a href="/admin/Product/create" class ="btn  btn-secondary mb-3 mt-3">新增產品</a>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>標題</th>
-                <th>副標題</th>
-                <th>網址</th>
+                <th>產品名稱</th>
+                <th>產品資訊</th>
+                <th>圖片</th>
                 <th style="width:180px;">功能</th>
 
             </tr>
@@ -25,8 +26,8 @@
                         <img width ='200'src={{$product->file}} alt="">
                     </td>
                     <td>
-                        <a href="/admin/news/edit/{{$product->id}}" class ="btn btn-sm btn-secondary">編輯消息</a>
-                        <a href="/admin/news/destroy{{$product->id}}" class ="btn btn-sm btn-secondary">刪除消息</a>
+                        <a href="/admin/Product/edit/{{$product->id}}" class ="btn btn-sm btn-secondary">編輯消息</a>
+                        <a href="/admin/Product/destroy{{$product->id}}" class ="btn btn-sm btn-secondary">刪除消息</a>
 
                     </td>
                 </tr>
@@ -34,6 +35,7 @@
         </tbody>
     </table>
 </div>
+
 @endsection
 
 @section('js')

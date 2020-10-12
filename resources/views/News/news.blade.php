@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="container"> 
+    <a href="/admin/news/create" class ="btn  btn-secondary mb-3 mt-3">新增消息</a>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>

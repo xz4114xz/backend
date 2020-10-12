@@ -16,29 +16,56 @@ class ProductController extends Controller
 
     public function create()
     {
-        // dd("crate");
         return view('Product/create');
-
     }
 
     public function store(Request $request)
     {
-        // dd("store");
         $requestData = $request->all();
-        // dd($requestData);
+        dd($requestData);
+
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $path = $this->fileUpload($file, 'product');
             $requestData['file'] = $path;
         }
-        // dd($requestData);
-        
+    
         Product::create($requestData);
-        // dd('123');
         return redirect('/admin/Product');
     }
 
+    public function edit($id)
+    {
+        // dd("edit");
+        $products = DB::table('product')->find($id);
+        // dd($products);
+        return view('Product/edit', compact('products'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        // dd('update');
+        // $news = DB::table('news')->find($id);
+        $product = Product::find($id);
+        $requestData = $request->all();
+        if ($request->hasFile('file')) {
+            //刪除檔案
+            $old_image = $product->file;
+            File::delete(public_path() . $old_image);
+
+            $file = $request->file('file');
+            $path = $this->fileUpload($file, 'product'); //硬碟存入新檔案
+            $requestData['file'] = $path; //存入顯示路徑
+
+        }
+        // dd($requestData);
+        // dd($product);
+        $product->update($requestData);
+
+        return redirect('/admin/Product');
+    }
+
+    /////////////////////////////////////////
     private function fileUpload($file, $dir)
     {
         //防呆：資料夾不存在時將會自動建立資料夾，避免錯誤
