@@ -26,7 +26,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                
+
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -74,9 +74,9 @@
             </div>
         </nav>
 
-        <div class ="container">  
+        <div class ="container">
             <a href="/admin/news" class ="btn  btn-secondary ml-3 mr-3 mb-3 mt-3">消息管理</a>
-            <a href="/admin/HeadPhone" class ="btn  btn-secondary mb-3 mt-3">產品管理</a> 
+            <a href="/admin/Product" class ="btn  btn-secondary mb-3 mt-3">產品管理</a>
 
             <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -86,7 +86,7 @@
 
         </div>
 
-        
+
 
         <main class="py-4">
             @yield('content')

@@ -33,7 +33,7 @@
               <option>東台灣</option>
               <option>離島</option>
             </select>
-          </div>
+        </div>
           <div class="form-group">
             <label for="exampleFormControlFile1">上傳照片</label>
             <input type="file" class="form-control-file" id="exampleFormControlFile1"name = "file">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHeadPhonesTable extends Migration
+class CrateProductTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateHeadPhonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('HeadPHones', function (Blueprint $table) {
+        Schema::create('product_type', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('');
+            $table->string('name');
+            $table->string('product_id');
+            $table->integer('sort');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateHeadPhonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('HeadPHones');
+        Schema::dropIfExists('product_type');
     }
 }

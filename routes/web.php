@@ -55,5 +55,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
 });
 
+// Product
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+    Route::get('/Product','ProductController@product');
+    Route::get('/Product/create','ProductController@create');
+    Route::post('/Product/store','ProductController@store');
+    Route::get('/Product/edit/{productid}','ProductController@edit');
+    Route::post('/Product/edit/update/{productid}','ProductController@update');
+    Route::get('/Product/destroy{productid}','ProductController@destroy');
+
+});
 
 

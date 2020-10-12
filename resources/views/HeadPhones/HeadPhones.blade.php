@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container"> 
+<div class="container">
     <table id="HeadPHone" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -15,7 +15,6 @@
                 <th>照片</th>
                 <th>產品內文</th>
                 <th style="width:180px;">功能</th>
-
             </tr>
         </thead>
         <tbody>
