@@ -9,7 +9,7 @@ use App\attraction;
 
 class FrontController extends Controller
 {
-
+    
     public function testAction(){
         return view('welcome');
     }

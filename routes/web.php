@@ -23,17 +23,17 @@ Route::get('/index' , 'FrontController@index');
 Route::get('/contact_us' , 'FrontController@contact_us');
 Route::get('/news' , 'FrontController@news');
 Route::get('/news_info/{news_id}' , 'FrontController@news_info');//{newsid} 會成為FrontController內 news_info此函式的引數
-// Route::get('/template.html' , 'FrontController@template');
 Route::post('/store_contact_us', 'FrontController@store_contact_us');
-
 Route::get('/login' , 'FrontController@login');
 Route::get('/register','FrontController@register');
 
 // Auth::routes();
 Auth::routes(['register'=>false]);
 
-
+// Backend Home
 Route::get('/admin', 'HomeController@index')->name('home');
+
+// NewsBackend
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/news','NewsController@news');
     Route::get('/news/create','NewsController@create');
@@ -44,6 +44,16 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
 });
 
+// HeadPhone
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+    Route::get('/HeadPhone','HeadPhonesController@news');
+    Route::get('/HeadPhone/create','HeadPhonesController@create');
+    Route::post('/HeadPhone/store','HeadPhonesController@store');
+    Route::get('/HeadPhone/edit/{HeadPhoneid}','HeadPhonesController@edit');
+    Route::post('/HeadPhone/edit/update/{HeadPhoneid}','HeadPhonesController@update');
+    Route::get('/HeadPhone/destroy{HeadPhoneid}','HeadPhonesController@destroy');
+
+});
 
 
 
