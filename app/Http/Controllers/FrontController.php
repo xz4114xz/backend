@@ -6,18 +6,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\attraction;
+use App\product_type;
+
 
 class FrontController extends Controller
 {
-    
+
     public function testAction(){
         return view('welcome');
     }
-
+    // 本來用於顯示最新消息的首頁
+    // public function index(){
+    //     $news_list = DB::Table('news')->orderBy("id","desc")->take(3)->get();
+    //     // dd($news_list);
+    //     return view('front/index',compact('news_list'));
+    // }
     public function index(){
-        $news_list = DB::Table('news')->orderBy("id","desc")->take(3)->get();
-        // dd($news_list);
-        return view('front/index',compact('news_list'));
+        $product_type_id = 1;
+        // $product_types = product_type::where('id',$product_type_id)->with('product')->get();
+        $product_types = product_type::with('product')->get();
+
+        // $product_types = product_type::->with('product')->get();
+
+        // dd($product_types);
+        return view('front/product',compact('product_types'));
+
+
     }
 
     public function contact_us(){
@@ -35,13 +49,18 @@ class FrontController extends Controller
         return view('front/news_info',compact('news'));
     }
 
+    public function product_info($product_id){
+        $product = DB::Table('product')->where("id","=",$product_id)->first();
+        return view('front/product_info',compact('product'));
+    }
+
     public function template(){
         return view('front/template');
     }
         public function login(){
             return view('auth/login');
     }
-    
+
     public function register(){
         return view('auth/register');
     }
@@ -77,5 +96,7 @@ class FrontController extends Controller
         return "success";
 
     }
+
+
 
 }

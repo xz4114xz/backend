@@ -19,8 +19,15 @@
         </div>
 
         <div class="form-group">
-            <label for="info">產品類型</label>
-            <input type="number" class="form-control" id="product_type_id" value ={{$products->product_type_id}} name ="product_type_id"  >
+
+            <label for="product_type_id">產品類型</label>
+            <select class ="form-control " name="product_type_id" id="product_type_id">
+                @foreach ($product_types as $product_type)
+                    <option value="{{$product_type->product_id}}">{{$product_type->name}}</option>
+                @endforeach
+            </select>
+
+            {{-- <input type="number" class="form-control mt-3" id="product_type_id" value ={{$products->product_type_id}} name ="product_type_id"  > --}}
         </div>
 
         <div class="form-group">
@@ -36,7 +43,7 @@
 
         <div class="form-group">
             <label for="info">內文</label>
-            <textarea  id ="summernote" type="text" class="form-control" id="info" value ={{$products->info}} name = "info"></textarea>
+            <textarea  id ="" type="text" class="form-control" id="info" value ="{{$products->info}}" name = "info">{{$products->info}}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">送出審查</button>

@@ -19,7 +19,7 @@ class CrateProductTypeTable extends Migration
             $table->string('product_id');
             $table->integer('sort');
             $table->timestamps();
-        });
+       });
     }
 
     /**

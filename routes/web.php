@@ -23,6 +23,7 @@ Route::get('/index' , 'FrontController@index');
 Route::get('/contact_us' , 'FrontController@contact_us');
 Route::get('/news' , 'FrontController@news');
 Route::get('/news_info/{news_id}' , 'FrontController@news_info');//{newsid} 會成為FrontController內 news_info此函式的引數
+Route::get('/product_info/{product_id}' , 'FrontController@product_info');
 Route::post('/store_contact_us', 'FrontController@store_contact_us');
 Route::get('/login' , 'FrontController@login');
 Route::get('/register','FrontController@register');

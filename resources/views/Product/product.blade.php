@@ -13,6 +13,9 @@
                 <th>產品名稱</th>
                 <th>產品資訊</th>
                 <th>圖片</th>
+                <th>類別</th>
+                <th>價錢</th>
+                <th>權重</th>
                 <th style="width:180px;">功能</th>
 
             </tr>
@@ -25,6 +28,9 @@
                     <td>
                         <img width ='200'src={{$product->file}} alt="">
                     </td>
+                    <td>{{$product->product_type_id}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->sort}}</td>
                     <td>
                         <a href="/admin/Product/edit/{{$product->id}}" class ="btn btn-sm btn-secondary">編輯消息</a>
                         <a href="/admin/Product/destroy{{$product->id}}" class ="btn btn-sm btn-secondary">刪除消息</a>

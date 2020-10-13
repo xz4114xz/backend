@@ -10,7 +10,8 @@ class ProductController extends Controller
 {
     public function product()
     {
-        $product_list = DB::table('product')->orderBy("id", "desc")->get();
+        $product_list = DB::table('product')->orderBy("sort", "asc")->get();
+        // dd($product_list);
         return view('Product/product', compact('product_list'));
     }
 
@@ -29,7 +30,7 @@ class ProductController extends Controller
             $path = $this->fileUpload($file, 'product');
             $requestData['file'] = $path;
         }
-    
+
         Product::create($requestData);
         return redirect('/admin/Product');
     }
@@ -38,8 +39,10 @@ class ProductController extends Controller
     {
         // dd("edit");
         $products = DB::table('product')->find($id);
+        $product_types = DB::table('product_type')->orderBy("id","asc")->get();
         // dd($products);
-        return view('Product/edit', compact('products'));
+        // dd($products->info);
+        return view('Product/edit', compact('products','product_types'));
     }
 
     public function update(Request $request, $id)
