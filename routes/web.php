@@ -65,6 +65,19 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('/Product/edit/update/{productid}','ProductController@update');
     Route::get('/Product/destroy{productid}','ProductController@destroy');
 
+    //ProductType
+    Route::resource('ProductType','ProductTypesController');
 });
 
+
+// ProductType
+// Route::prefix('admin')->middleware(['auth'])->group(function(){
+//     Route::get('/ProductType','ProductTypesController@productTypes');
+//     Route::get('/ProductType/create','ProductTypesController@create');
+//     Route::post('/ProductType/store','ProductTypesController@store');
+
+
+
+
+// });
 

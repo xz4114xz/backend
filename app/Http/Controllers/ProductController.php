@@ -17,7 +17,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('Product/create');
+        $product_types = DB::table('product_type')->orderBy("id","asc")->get();
+        return view('Product/create',compact('product_types'));
     }
 
     public function store(Request $request)

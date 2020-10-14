@@ -76,7 +76,9 @@
 
         <div class ="container">
             <a href="/admin/news" class ="btn  btn-secondary ml-3 mr-3 mb-3 mt-3">消息管理</a>
-            <a href="/admin/Product" class ="btn  btn-secondary mb-3 mt-3">產品管理</a>
+            <a href="/admin/Product" class ="btn  btn-secondary mb-3 mt-3 mr-3">產品管理</a>
+            <a href="/admin/ProductType" class ="btn  btn-secondary mb-3 mt-3">產品類別管理</a>
+
 
             <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

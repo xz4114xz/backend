@@ -19,16 +19,20 @@
             <input type="number" class="form-control" id="price" name ="price"  >
         </div>
 
-        <div class="form-group">
-            <label for="info">產品類型</label>
-            <input type="number" class="form-control" id="product_type_id" name ="product_type_id"  >
-        </div>
+        <div class="form-group ">
 
-        <div class="form-group">
+            <label for="product_type_id">產品類型</label>
+            <select class ="form-control  " name="product_type_id" id="product_type_id">
+                @foreach ($product_types as $product_type)
+                    <option value="{{$product_type->id}}">{{$product_type->name}}</option>
+                @endforeach
+            </select>
+
+        <div class="form-group mt-3">
             <label for="info">排序</label>
             <input type="number" class="form-control" id="sort" name ="sort"  >
         </div>
- 
+
         <div class="form-group">
             <label for="file">上傳照片</label>
             <input type="file" class="form-control-file" id="file"name = "file">
@@ -41,7 +45,7 @@
         <button type="submit" class="btn btn-primary">送出審查</button>
 
     </form>
-    
+
 </div>
 
 

@@ -23,7 +23,7 @@
             <label for="product_type_id">產品類型</label>
             <select class ="form-control " name="product_type_id" id="product_type_id">
                 @foreach ($product_types as $product_type)
-                    <option value="{{$product_type->product_id}}">{{$product_type->name}}</option>
+                    <option value="{{$product_type->id}}">{{$product_type->name}}</option>
                 @endforeach
             </select>
 
