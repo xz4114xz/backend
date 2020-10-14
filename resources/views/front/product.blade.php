@@ -5,7 +5,7 @@
     @endsection
 
     @section('content')
-        <h2 class="news_title">最新消息</h2>
+        <h2 class="news_title">產品訊息</h2>
         <div class="row news_lists">
             @foreach ($product_types as $product_type)
                 <div class="col-md-4">

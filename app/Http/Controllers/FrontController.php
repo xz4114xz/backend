@@ -16,16 +16,18 @@ class FrontController extends Controller
         return view('welcome');
     }
     // 本來用於顯示最新消息的首頁
-    // public function index(){
-    //     $news_list = DB::Table('news')->orderBy("id","desc")->take(3)->get();
-    //     // dd($news_list);
-    //     return view('front/index',compact('news_list'));
-    // }
     public function index(){
+        $news_list = DB::Table('news')->orderBy("id","desc")->take(3)->get();
+        // dd($news_list);
+        return view('front/index',compact('news_list'));
+    }
+    public function product(){
+
+        // dd(123);
         $product_type_id = 1;
         // $product_types = product_type::where('id',$product_type_id)->with('product')->get();
         $product_types = product_type::with('product')->get();
-
+        // dd($product_types);
         // $product_types = product_type::->with('product')->get();
 
         // dd($product_types);

@@ -115,6 +115,16 @@ class ProductTypesController extends Controller
      */
     public function destroy($id)
     {
-        dd("delete");
+        // dd("delete");
+        $item = product_type::find($id);
+        $produts = DB::table('product')->where("product_type_id","=",$id)->get();
+    
+        $item->delete();
+        if($produts){
+            DB::table('product')->where("product_type_id","=",$id)->delete();
+        }
+        
+
+        return redirect('/admin/ProductType');
     }
 }
