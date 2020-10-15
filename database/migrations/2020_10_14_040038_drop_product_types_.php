@@ -25,7 +25,7 @@ class DropProductTypes extends Migration
      */
     public function down()
     {
-        Schema::table('product_type', function (Blueprint $table) {
+        Schema::dropIfExists('product_type', function (Blueprint $table) {
             $table->string('product_id');
         });
     }

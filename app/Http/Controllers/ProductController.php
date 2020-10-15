@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Product;
+use App\ProductImages;
+
 class ProductController extends Controller
 {
     public function product()
@@ -17,6 +19,7 @@ class ProductController extends Controller
 
     public function create()
     {
+        // dd(123);
         $product_types = DB::table('product_type')->orderBy("id","asc")->get();
         return view('Product/create',compact('product_types'));
     }
@@ -24,7 +27,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        dd($requestData);
+        // dd($requestData);
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -32,7 +35,24 @@ class ProductController extends Controller
             $requestData['file'] = $path;
         }
 
-        Product::create($requestData);
+        $new_product =  Product::create($requestData);
+        $new_product_id = $new_product->id;
+        //多個檔案
+        if($request->hasFile('multiple_images'))
+        {
+            $files = $request->file('multiple_images');
+            foreach ($files as $file) {
+                //上傳圖片
+                $path = $this->fileUpload($file,'product_imgs');
+                //新增資料進DB
+                $product_img = new ProductImages;
+                $product_img->product_id = $new_product_id;
+                $product_img->product_image = $path;
+                $product_img->save();
+            }
+        }
+
+        // Product::create($requestData);
         return redirect('/admin/Product');
     }
 
@@ -41,9 +61,11 @@ class ProductController extends Controller
         // dd("edit");
         $products = DB::table('product')->find($id);
         $product_types = DB::table('product_type')->orderBy("id","asc")->get();
+        $product_imgs = DB::table('productimages')->where("product_id",$products->id)->orderBy("sort","asc")->get();
+
         // dd($products);
         // dd($products->info);
-        return view('Product/edit', compact('products','product_types'));
+        return view('Product/edit', compact('products','product_types','product_imgs'));
     }
 
     public function update(Request $request, $id)
