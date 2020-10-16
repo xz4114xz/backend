@@ -59,13 +59,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         // dd("edit");
-        $products = DB::table('product')->find($id);
+        $product = DB::table('product')->find($id);
         $product_types = DB::table('product_type')->orderBy("id","asc")->get();
-        $product_imgs = DB::table('productimages')->where("product_id",$products->id)->orderBy("sort","asc")->get();
+        $product_imgs = DB::table('productimages')->where("product_id",$product->id)->whereNotNull('product_id')->orderBy("sort","asc")->get();
 
         // dd($products);
         // dd($products->info);
-        return view('Product/edit', compact('products','product_types','product_imgs'));
+        return view('Product/edit', compact('product','product_types','product_imgs'));
     }
 
     public function update(Request $request, $id)
@@ -83,6 +83,21 @@ class ProductController extends Controller
             $path = $this->fileUpload($file, 'product'); //硬碟存入新檔案
             $requestData['file'] = $path; //存入顯示路徑
 
+        }
+
+        //多個檔案
+        if($request->hasFile('multiple_images'))
+        {
+            $files = $request->file('multiple_images');
+            foreach ($files as $file) {
+                //上傳圖片
+                $path = $this->fileUpload($file,'product_imgs');
+                //新增資料進DB
+                $product_img = new ProductImages;
+                $product_img->product_id = $id;
+                $product_img->product_image = $path;
+                $product_img->save();
+            }
         }
         // dd($requestData);
         // dd($product);

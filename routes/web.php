@@ -29,8 +29,8 @@ Route::post('/store_contact_us', 'FrontController@store_contact_us');
 Route::get('/login', 'FrontController@login');
 Route::get('/register', 'FrontController@register');
 
-// Auth::routes();
-Auth::routes(['register' => false]);
+Auth::routes();
+// Auth::routes(['register' => false]);
 
 // Backend Home
 Route::get('/admin', 'HomeController@index')->name('home');
@@ -55,8 +55,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/HeadPhone/destroy{HeadPhoneid}', 'HeadPhonesController@destroy');
 });
 
-// Product
+
+
 Route::prefix('admin')->middleware(['auth'])->group(function () {
+    // Product
     Route::get('/Product', 'ProductController@product');
     Route::get('/Product/create', 'ProductController@create');
     Route::post('/Product/store', 'ProductController@store');
@@ -66,9 +68,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     //ProductType
     Route::resource('ProductType', 'ProductTypesController');
+
     // summer note upload/download img
     Route::post('/ajax_upload_img', 'AdminController@ajax_upload_img');
     Route::post('/ajax_delete_img', 'AdminController@ajax_delete_img');
+
+    //ProductImages
+    // Route::delete('admin/ProductImages/{ProductImage} ');
+    Route::resource('ProductImages', 'ProductImagesController');
+
 });
 
 
