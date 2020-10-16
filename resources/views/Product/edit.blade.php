@@ -65,10 +65,10 @@
 
     {{-- delete  product_images --}}
     @foreach ($product_imgs as $product_img)
-        <form method="POST" id="deleteform_{{$product_img->id}}" class="deleteform"  action="/admin/ProductImages/{{$product_img->id}}">
+        <form method="POST" id="deleteform_{{$product_img->id}}" class="deleteform"  action="/admin/ProductImages/{{$product->id}}/{{$product_img->id}}">
             @csrf
             @method('DELETE')
-            <input type="hidden" value =>
+            {{-- <input type="hidden" value => --}}
         </form>
     @endforeach
 

@@ -74,7 +74,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/ajax_delete_img', 'AdminController@ajax_delete_img');
 
     //ProductImages
-    // Route::delete('admin/ProductImages/{ProductImage} ');
+    Route::delete('/ProductImages/{Product_id}/{ProductImage_id} ','ProductImagesController@destroy');
     Route::resource('ProductImages', 'ProductImagesController');
 
 });

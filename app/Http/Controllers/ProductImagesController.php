@@ -76,14 +76,14 @@ class ProductImagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($product_id,$productimage_id)
     {
         // dd("delete");
-        $item = ProductImages::find($id);
+        $item = ProductImages::find($productimage_id);
         $item->delete();
 
         // $direct_url = '/admin/Product/edit/' . $id; 應抓取產品id並非產品圖片id，$id為產品圖片id
-        $direct_url = '/admin/Product' ;
+        $direct_url = '/admin/Product/edit/' .$product_id ;
 
         return redirect($direct_url);
 
