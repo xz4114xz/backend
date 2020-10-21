@@ -29,6 +29,11 @@ Route::post('/store_contact_us', 'FrontController@store_contact_us');
 Route::get('/login', 'FrontController@login');
 Route::get('/register', 'FrontController@register');
 
+Route::get('/addProductToCart', 'CartController@addProductToCart');
+Route::get('/getContent', 'CartController@getContent');
+Route::get('/totalCart', 'CartController@totalCart');
+
+
 Auth::routes();
 // Auth::routes(['register' => false]);
 

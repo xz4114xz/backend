@@ -42,6 +42,8 @@
                     <a class="nav-link" href="/contact_us">來信推薦</a>
                 </li>
             </ul>
+
+
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -52,6 +54,21 @@
     <main role="main" style ="margin-top:60px;">
         <section class="news_info">
             <div class="container">
+                <i class="icon-shopping-cart">
+                    <span id="cartTotalQuantity">
+                        {{-- {{ \Cart::getTotalQuantity() }} 沒指定人的寫法 --}}
+                        {{-- 指定對象的PHP原生寫法 --}}
+                        @guest
+                            0
+                        @else
+                        <?php
+                            $userId = auth()->user()->id;
+                            $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
+                            echo $cartTotalQuantity;
+                        ?>
+                        @endguest
+                    </span>
+                </i>
                 <h2 class="info_title">{{$product->name}}</h2>
                 <div class="row">
                     <div class="col-12 my-3 my-md-0 col-md-6">
@@ -66,6 +83,8 @@
                             {{-- <h3>{{$product->product_type_id}}</h3> --}}
                             {{$product->info}}
                         </div>
+
+                        <button class="btn btn-danger addcart" data-productid="{{$product->id}}">加入購物車</button>
 
                     </div>
                 </div>
@@ -96,6 +115,32 @@
 
     <!-- page js -->
     <script src="./js/index.js"></script>
+
+    <script>
+        $('.addcart').click(function () {
+            var product_id = $(this).data('productid');
+            console.log(product_id);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        $.ajax({
+            method: 'POST',
+            url: '/addcart',
+            data: {product_id:product_id},
+            success: function (res) {
+                $('#cartTotalQuantity').text(res);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(textStatus + " " + errorThrown);
+            }
+        });
+    });
+    </script>
+
 </body>
 
 </html>
